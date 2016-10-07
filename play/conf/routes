@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET        /                     controllers.Application.index(level: Int = 1)
+GET        /level/:level         controllers.Application.index(level: Int)
+
+# Compile user code by Scala.js
+POST       /compile              controllers.Application.compile
+POST       /complete             controllers.Application.complete
+
+# Respond stage information
+GET        /stage/:level         controllers.Application.stage(level: Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file         controllers.Assets.at(path="/public", file)
+GET        /webjars/*file        controllers.WebJarAssets.at(file)

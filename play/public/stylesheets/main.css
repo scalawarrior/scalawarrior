@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Silkscreen';
+   src:  url('/assets/stylesheets/slkscr.ttf') format('truetype')
+}
+
+h1.silk {
+    font-size: 60px;
+}
+
+.samurai-logo {
+    vertical-align: bottom;
+    width: 60px;
+    padding-bottom: 14px;
+}
+
+.status {
+    font-size: 40%;
+}
+
+.silk {
+    font-family: "Silkscreen", Menlo, monospace;
+}
+
+div.modal-body {
+    font-size: 90%;
+}
+
+#help {
+    position: absolute;
+    float: right;
+    margin-top: 10px;
+    left: 1010px;
+}
+
+#editor {
+    width: 1000px;
+    height: 300px
+}
+
+.buttons {
+    margin: 8px;
+    width: 990px;
+}
+
+.code {
+    margin-top: 8px;
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+    padding: 8px;
+}

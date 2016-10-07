@@ -1,0 +1,35 @@
+@(level: Int)(implicit environment: play.api.Environment, webJarAssets: WebJarAssets)
+
+@main("Scala Warrior") {
+  <div>
+    <div class="card" id="help">
+      <div class="card-header">Hint</div>
+      <div class="card-block">@help(level)</div>
+    </div>
+    <h1 class="silk">
+      <span style="color: #AA0000;">S</span>cala<img src="/assets/images/samurai.png" class="samurai-logo">
+      <span class="status">
+        Level: @level
+        Life: <span id="life">20</span>
+      </span>
+    </h1>
+    <div>
+      <canvas id="demoCanvas" width="1000" height="200" style="background-color: black;"></canvas>
+    </div>
+    <div class="buttons">
+      <input type="button" id="run" value="Run" class="btn btn-success">
+      <span id="status"></span>
+    </div>
+    <div id="editor">import api._
+
+class ScalaWarriorController extends api.ScalaWarriorController {
+  def next(warrior: ScalaWarrior): Action = {
+    // TODO Write your code here!
+  }
+}</div>
+  @playscalajs.html.scripts("scalajsclient")
+}
+</div>
+
+@clear(level)
+@gameover(level)
