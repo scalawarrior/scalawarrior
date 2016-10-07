@@ -1,7 +1,9 @@
-scala-warrior
+scalawarrior
 =============
 
 This is a game for learning Scala which is inspired by [ruby-warrior](https://github.com/ryanb/ruby-warrior).
+
+![scalawarrior](scalawarrior.png)
 
 
 Getting Started
