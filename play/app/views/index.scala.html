@@ -4,7 +4,7 @@
   <div>
     <div class="card" id="help">
       <div class="card-header">Hint</div>
-      <div class="card-block">@help(level)</div>
+      <div class="card-block">@Html(views.Components.help(level).toString)</div>
     </div>
     <h1 class="silk">
       <span style="color: #AA0000;">S</span>cala<img src="/assets/images/samurai.png" class="samurai-logo">
@@ -31,5 +31,5 @@ class ScalaWarriorController extends api.ScalaWarriorController {
 }
 </div>
 
-@clear(level)
-@gameover(level)
+@Html(views.Components.clear(level).toString)
+@Html(views.Components.gameover(level).toString)
