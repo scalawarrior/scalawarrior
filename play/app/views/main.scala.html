@@ -1,5 +1,6 @@
 @(title: String)(content: Html)(implicit webJarAssets: WebJarAssets)
 @import play.api.Play
+@import scalacss.Defaults._
 
 <!DOCTYPE html>
 
@@ -17,6 +18,9 @@
     <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.css"))">
     <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(webJarAssets.locate("build/font/octicons.min.css"))">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/samurai.png")">
+    <style>
+      @views.Styles.render
+    </style>
   </head>
   <body>
     @content

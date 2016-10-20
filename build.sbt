@@ -18,7 +18,8 @@ lazy val playserver = (project in file("play")).settings(
     "org.scala-js" % "scalajs-compiler_2.11.7" % "0.6.10",
     "org.scala-lang.modules" %% "scala-async" % "0.9.1",
     "org.scala-js" %% "scalajs-tools" % "0.6.10",
-    "com.scalatags" %% "scalatags" % "0.4.2"
+    "com.scalatags" %% "scalatags" % "0.4.2",
+    "com.github.japgolly.scalacss" %% "core" % "0.5.0"
   )
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).

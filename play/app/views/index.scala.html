@@ -2,13 +2,13 @@
 
 @main("Scala Warrior") {
   <div>
-    <div class="card" id="help">
+    <div class="card @views.Styles.help.htmlClass">
       <div class="card-header">Hint</div>
       <div class="card-block">@Html(views.Components.help(level).toString)</div>
     </div>
-    <h1 class="silk">
-      <span style="color: #AA0000;">S</span>cala<img src="/assets/images/samurai.png" class="samurai-logo">
-      <span class="status">
+    <h1 class="silk @views.Styles.h1.htmlClass">
+      <span style="color: #AA0000;">S</span>cala<img src="/assets/images/samurai.png" class="@views.Styles.logo.htmlClass">
+      <span class="@views.Styles.status.htmlClass">
         Level: @level
         Life: <span id="life">20</span>
       </span>
@@ -16,11 +16,11 @@
     <div>
       <canvas id="demoCanvas" width="1000" height="200" style="background-color: black;"></canvas>
     </div>
-    <div class="buttons">
+    <div class="@views.Styles.buttons.htmlClass">
       <input type="button" id="run" value="Run" class="btn btn-success">
       <span id="status"></span>
     </div>
-    <div id="editor">import api._
+    <div id="editor" class="@views.Styles.editor.htmlClass">import api._
 
 class ScalaWarriorController extends api.ScalaWarriorController {
   def next(warrior: ScalaWarrior): Action = {

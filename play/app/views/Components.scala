@@ -49,7 +49,7 @@ object Components {
     div(`class`:="modal", id:="gameOverModal", tabindex:="-1", role:="dialog", "aria-labelledby".attr:="staticModalLabel", "aria-hidden".attr:="true", "data-show".attr:="true", "data-keyboard".attr:="false", "data-backdrop".attr:="static")(
       div(`class`:="modal-dialog")(
         div(`class`:="modal-content")(
-          div(`class`:="modal-body")(
+          div(`class`:=s"modal-body ${Styles.modalBody.htmlClass}")(
             h4(`class`:="modal-title", "Game Over!")
           ),
           div(`class`:="modal-footer")(
@@ -65,7 +65,7 @@ object Components {
     div(`class`:="modal", id:="clearModal", tabindex:="-1", role:="dialog", "aria-labelledby".attr:="staticModalLabel", "aria-hidden".attr:="true", "data-show".attr:="true", "data-keyboard".attr:="false", "data-backdrop".attr:="static")(
       div(`class`:="modal-dialog")(
         div(`class`:="modal-content")(
-          Seq(div(`class`:="modal-body")(
+          Seq(div(`class`:=s"modal-body ${Styles.modalBody.htmlClass}")(
             h4(`class`:="modal-title", "Congratulations!")
           )) ++
           (if(level == 3){
