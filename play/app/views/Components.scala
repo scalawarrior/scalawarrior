@@ -78,6 +78,7 @@ object Components {
           } else Nil) ++
           Seq(div(`class`:="modal-footer")(
             a(`href`:="/level/" + level, `class`:="btn btn-secondary", "Retry this stage"),
+            " ",
             if(level == 3){
               a(`href`:="/" + level, `class`:="btn btn-primary", "Go to first stage")
             } else {
