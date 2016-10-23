@@ -6,6 +6,7 @@ lazy val scalaV = "2.11.8"
 lazy val playserver = (project in file("play")).settings(
   scalaVersion := scalaV,
   scalaJSProjects := clients,
+  pipelineStages in Assets := Seq(scalaJSPipeline),
   routesGenerator := InjectedRoutesGenerator,
   libraryDependencies ++= Seq(
     "com.vmunier" %% "play-scalajs-scripts" % "0.5.0",
@@ -15,11 +16,9 @@ lazy val playserver = (project in file("play")).settings(
     "org.webjars" % "bootstrap" % "4.0.0-alpha.3",
     "org.webjars" % "octicons" % "4.3.0",
     "org.scala-lang" % "scala-compiler" % "2.11.8",
-    "org.scala-js" % "scalajs-compiler_2.11.8" % "0.6.10",
+    "org.scala-js" % "scalajs-compiler_2.11.8" % "0.6.13",
     "org.scala-lang.modules" %% "scala-async" % "0.9.1",
-    "org.scala-js" %% "scalajs-tools" % "0.6.10",
-    "com.scalatags" %% "scalatags" % "0.4.2"//,
-    //"com.github.japgolly.scalacss" %% "core" % "0.5.0"
+    "org.scala-js" %% "scalajs-tools" % "0.6.13"
   )
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).
@@ -38,18 +37,18 @@ lazy val scalajsclient = (project in file("scalajs")).settings(
     //"com.scalawarrior" %%% "scalajs-ace" % "0.0.1-SNAPSHOT",
     "org.scala-lang.modules" %% "scala-async" % "0.9.1" % "provided"
   )
-).enablePlugins(ScalaJSPlugin, ScalaJSPlay).
+).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn(sharedJs)
 
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
   settings(
     scalaVersion := scalaV,
     libraryDependencies ++= Seq(
-      //"com.scalatags" %%% "scalatags" % "0.4.2",
+      "com.lihaoyi" %%% "scalatags" % "0.6.2",
       "com.github.japgolly.scalacss" %%% "core" % "0.5.0"
     )
   ).
-  jsConfigure(_ enablePlugins ScalaJSPlay)
+  jsConfigure(_ enablePlugins ScalaJSWeb)
 
 lazy val sharedJvm = shared.jvm
 lazy val sharedJs = shared.js
