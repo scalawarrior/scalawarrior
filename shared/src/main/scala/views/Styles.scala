@@ -5,8 +5,16 @@ import scalacss.Defaults._
 object Styles extends StyleSheet.Inline {
   import dsl._
 
+  val silkFont = fontFace("Silkscreen")(
+    _.src("url(/assets/stylesheets/slkscr.ttf)")
+  )
+
   val h1 = style(
     fontSize(60 px)
+  )
+
+  val silk = style(
+    fontFamily(silkFont)
   )
 
   val logo = style(
@@ -40,7 +48,7 @@ object Styles extends StyleSheet.Inline {
     width(990 px)
   )
 
-  val code = style(
+  val errorMessage = style(
     marginTop(8 px),
     padding(8 px)
   )

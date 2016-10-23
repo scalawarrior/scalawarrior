@@ -42,7 +42,7 @@ trait EditorActions {
         f(jqXHR.responseText)
       },
       error = (jqXHR: JQueryXHR, textStatus: String, errorThrow: String) => {
-        jQuery("#status").html("Error: <pre class=\"code\">" + jqXHR.responseText + "</pre>")
+        jQuery("#status").html("Error: <pre class=\"" + views.Styles.errorMessage.htmlClass + "\">" + jqXHR.responseText + "</pre>")
       }
     ).asInstanceOf[JQueryAjaxSettings])
   }

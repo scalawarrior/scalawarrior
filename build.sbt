@@ -1,7 +1,7 @@
 import sbt.Project.projectToRef
 
 lazy val clients = Seq(scalajsclient)
-lazy val scalaV = "2.11.7"
+lazy val scalaV = "2.11.8"
 
 lazy val playserver = (project in file("play")).settings(
   scalaVersion := scalaV,
@@ -14,12 +14,12 @@ lazy val playserver = (project in file("play")).settings(
     "org.webjars" % "jquery" % "1.11.1",
     "org.webjars" % "bootstrap" % "4.0.0-alpha.3",
     "org.webjars" % "octicons" % "4.3.0",
-    "org.scala-lang" % "scala-compiler" % "2.11.7",
-    "org.scala-js" % "scalajs-compiler_2.11.7" % "0.6.10",
+    "org.scala-lang" % "scala-compiler" % "2.11.8",
+    "org.scala-js" % "scalajs-compiler_2.11.8" % "0.6.10",
     "org.scala-lang.modules" %% "scala-async" % "0.9.1",
     "org.scala-js" %% "scalajs-tools" % "0.6.10",
-    "com.scalatags" %% "scalatags" % "0.4.2",
-    "com.github.japgolly.scalacss" %% "core" % "0.5.0"
+    "com.scalatags" %% "scalatags" % "0.4.2"//,
+    //"com.github.japgolly.scalacss" %% "core" % "0.5.0"
   )
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).
@@ -42,7 +42,13 @@ lazy val scalajsclient = (project in file("scalajs")).settings(
   dependsOn(sharedJs)
 
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
-  settings(scalaVersion := scalaV).
+  settings(
+    scalaVersion := scalaV,
+    libraryDependencies ++= Seq(
+      //"com.scalatags" %%% "scalatags" % "0.4.2",
+      "com.github.japgolly.scalacss" %%% "core" % "0.5.0"
+    )
+  ).
   jsConfigure(_ enablePlugins ScalaJSPlay)
 
 lazy val sharedJvm = shared.jvm
