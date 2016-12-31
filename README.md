@@ -12,7 +12,7 @@ Getting Started
 Clone this repository and hit following command at the root directory of the cloned repository to run scala-warrior:
 
 ```
-./activator run
+./sbt run
 ```
 
 And access to http://localhost:9000. Let's play!
