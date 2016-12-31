@@ -2,7 +2,7 @@
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.global
 import org.scalajs.jquery._
-import upickle._
+import upickle.default._
 import com.scalawarrior.scalajs.createjs._
 import Bootstrap._
 import internal.GameStage

@@ -1,7 +1,7 @@
 
 import scala.scalajs.js
 import org.scalajs.jquery._
-import upickle._
+import upickle.default._
 import com.scalawarrior.scalajs.createjs._
 import Bootstrap._
 import internal.Step

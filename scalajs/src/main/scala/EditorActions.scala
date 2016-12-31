@@ -6,6 +6,7 @@ import org.scalajs.jquery.{JQueryAjaxSettings, JQueryXHR, _}
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic._
+import upickle.default._
 
 trait EditorActions {
 
@@ -75,7 +76,7 @@ trait EditorActions {
         "offset" -> intOffset
       ),
       success = (data: js.Any, status: String, jqXHR: JQueryXHR) => {
-        val res = upickle.read[Seq[Map[String, String]]](jqXHR.responseText)
+        val res = read[Seq[Map[String, String]]](jqXHR.responseText)
         p.success(res.map(x => x.map { case (key, value) => key -> value }.head))
       },
       error = (jqXHR: JQueryXHR, textStatus: String, errorThrow: String) => {
