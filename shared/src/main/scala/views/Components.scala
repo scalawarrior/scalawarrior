@@ -80,7 +80,7 @@ object Components {
             a(`href`:="/level/" + level, `class`:="btn btn-secondary", "Retry this stage"),
             " ",
             if(level == 3){
-              a(`href`:="/" + level, `class`:="btn btn-primary", "Go to first stage")
+              a(`href`:="/", `class`:="btn btn-primary", "Go to first stage")
             } else {
               a(`href`:="/level/" + (level + 1), `class`:="btn btn-primary", "Go to next stage")
             }
