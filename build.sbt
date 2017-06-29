@@ -1,7 +1,7 @@
 import sbt.Project.projectToRef
 
 lazy val clients = Seq(scalajsclient)
-lazy val scalaV = "2.11.8"
+lazy val scalaV = "2.12.2"
 
 lazy val playserver = (project in file("play")).settings(
   scalaVersion := scalaV,
@@ -9,14 +9,14 @@ lazy val playserver = (project in file("play")).settings(
   pipelineStages in Assets := Seq(scalaJSPipeline),
   routesGenerator := InjectedRoutesGenerator,
   libraryDependencies ++= Seq(
-    "com.vmunier" %% "play-scalajs-scripts" % "0.5.0",
+    //"com.vmunier" %% "play-scalajs-scripts" % "0.5.0",
     "org.webjars" %% "webjars-play" % "2.5.0-4",
     "org.webjars" % "ace" % "01.08.2014",
     "org.webjars" % "jquery" % "1.12.4",
     "org.webjars" % "bootstrap" % "4.0.0-alpha.5",
     "org.webjars" % "octicons" % "4.3.0",
-    "org.scala-lang" % "scala-compiler" % "2.11.8",
-    "org.scala-js" % "scalajs-compiler_2.11.8" % "0.6.14",
+    "org.scala-lang" % "scala-compiler" % "2.12.2",
+    "org.scala-js" % "scalajs-compiler_2.12.2" % "0.6.18",
     "org.scala-lang.modules" %% "scala-async" % "0.9.6",
     "org.scala-js" %% "scalajs-tools" % "0.6.14"
   )
@@ -33,12 +33,12 @@ lazy val scalajsclient = (project in file("scalajs")).settings(
     "amateras-snapshot-repo" at "http://amateras.sourceforge.jp/mvn-snapshot/"
   ),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+    "org.scala-js" %%% "scalajs-dom" % "0.9.2",
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
     "com.lihaoyi" %%% "upickle" % "0.4.4",
     "com.scalawarrior" %%% "scalajs-createjs" % "0.0.2",
     //"com.scalawarrior" %%% "scalajs-ace" % "0.0.1-SNAPSHOT",
-    "org.scala-lang.modules" %% "scala-async" % "0.9.1" % "provided"
+    "org.scala-lang.modules" %% "scala-async" % "0.9.6" % "provided"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn(sharedJs)
@@ -47,8 +47,8 @@ lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
   settings(
     scalaVersion := scalaV,
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "scalatags" % "0.6.2",
-      "com.github.japgolly.scalacss" %%% "core" % "0.5.1"
+      "com.lihaoyi" %%% "scalatags" % "0.6.5",
+      "com.github.japgolly.scalacss" %%% "core" % "0.5.3"
     )
   ).
   jsConfigure(_ enablePlugins ScalaJSWeb)
