@@ -72,13 +72,13 @@ object ScalaJSCompiler {
    * in-memory files
    */
   trait InMemoryGlobal { g: scala.tools.nsc.Global =>
-    def ctx: JavaContext
-    def dirs: Vector[DirectoryClassPath]
+//    def ctx: JavaContext
+//    def dirs: Vector[DirectoryClassPath]
     override lazy val plugins = List[Plugin](new org.scalajs.core.compiler.ScalaJSPlugin(this))
-    override lazy val platform: ThisPlatform = new JavaPlatform{
-      val global: g.type = g
-      override def classPath = new JavaClassPath(dirs, ctx)
-    }
+//    override lazy val platform: ThisPlatform = new JavaPlatform{
+//      val global: g.type = g
+//      override def classPath = new JavaClassPath(dirs, ctx)
+//    }
 
   }
 
@@ -89,8 +89,8 @@ object ScalaJSCompiler {
    */
   def initGlobalBits(logger: String => Unit)= {
     val vd = new io.VirtualDirectory("(memory)", None)
-    val jCtx = new JavaContext()
-    val jDirs = Classpath.scalac.map(new DirectoryClassPath(_, jCtx)).toVector
+    //val jCtx = new JavaContext()
+    //val jDirs = Classpath.scalac.map(new DirectoryClassPath(_, jCtx)).toVector
     lazy val settings = new Settings
 
     settings.outputDirs.setSingleOutput(vd)
@@ -106,16 +106,16 @@ object ScalaJSCompiler {
       def close(): Unit = ()
     }
     val reporter = new ConsoleReporter(settings, scala.Console.in, new PrintWriter(writer))
-    (settings, reporter, vd, jCtx, jDirs)
 
+    (settings, reporter, vd)
   }
 
   def autocomplete(code: String, flag: String, pos: Int): Future[List[(String, String)]] = async {
     // global can be reused, just create new runs for new compiler invocations
-    val (settings, reporter, vd, jCtx, jDirs) = initGlobalBits(_ => ())
+    val (settings, reporter, vd) = initGlobalBits(_ => ())
     val compiler = new nsc.interactive.Global(settings, reporter) with InMemoryGlobal { g =>
-      def ctx = jCtx
-      def dirs = jDirs
+//      def ctx = jCtx
+//      def dirs = jDirs
       override lazy val analyzer = new {
         val global: g.type = g
       } with InteractiveAnalyzer {
@@ -164,10 +164,10 @@ object ScalaJSCompiler {
     val singleFile = makeFile(src)
     println(singleFile)
 
-    val (settings, reporter, vd, jCtx, jDirs) = initGlobalBits(logger)
+    val (settings, reporter, vd) = initGlobalBits(logger)
     val compiler = new nsc.Global(settings, reporter) with InMemoryGlobal{ g =>
-      def ctx = jCtx
-      def dirs = jDirs
+//      def ctx = jCtx
+//      def dirs = jDirs
       override lazy val analyzer = new {
         val global: g.type = g
       } with Analyzer{

@@ -7,10 +7,12 @@ lazy val playserver = (project in file("play")).settings(
   scalaVersion := scalaV,
   scalaJSProjects := clients,
   pipelineStages in Assets := Seq(scalaJSPipeline),
+  compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   routesGenerator := InjectedRoutesGenerator,
   libraryDependencies ++= Seq(
-    //"com.vmunier" %% "play-scalajs-scripts" % "0.5.0",
-    "org.webjars" %% "webjars-play" % "2.5.0-4",
+    "com.vmunier" %% "scalajs-scripts" % "1.1.1",
+    //"com.vmunier" %% "play-scalajs-scripts" % "1.1.1",
+    "org.webjars" %% "webjars-play" % "2.6.0",
     "org.webjars" % "ace" % "01.08.2014",
     "org.webjars" % "jquery" % "1.12.4",
     "org.webjars" % "bootstrap" % "4.0.0-alpha.5",
@@ -18,7 +20,8 @@ lazy val playserver = (project in file("play")).settings(
     "org.scala-lang" % "scala-compiler" % "2.12.2",
     "org.scala-js" % "scalajs-compiler_2.12.2" % "0.6.18",
     "org.scala-lang.modules" %% "scala-async" % "0.9.6",
-    "org.scala-js" %% "scalajs-tools" % "0.6.14"
+    "org.scala-js" %% "scalajs-tools" % "0.6.14",
+    guice
   )
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).
@@ -26,8 +29,7 @@ lazy val playserver = (project in file("play")).settings(
 
 lazy val scalajsclient = (project in file("scalajs")).settings(
   scalaVersion := scalaV,
-  persistLauncher := true,
-  persistLauncher in Test := false,
+  scalaJSUseMainModuleInitializer := true,
   resolvers ++= Seq(
     "amateras-repo" at "http://amateras.sourceforge.jp/mvn/",
     "amateras-snapshot-repo" at "http://amateras.sourceforge.jp/mvn-snapshot/"
@@ -36,7 +38,7 @@ lazy val scalajsclient = (project in file("scalajs")).settings(
     "org.scala-js" %%% "scalajs-dom" % "0.9.2",
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
     "com.lihaoyi" %%% "upickle" % "0.4.4",
-    "com.scalawarrior" %%% "scalajs-createjs" % "0.0.2",
+    "com.scalawarrior" %%% "scalajs-createjs" % "0.0.3-SNAPSHOT",
     //"com.scalawarrior" %%% "scalajs-ace" % "0.0.1-SNAPSHOT",
     "org.scala-lang.modules" %% "scala-async" % "0.9.6" % "provided"
   )
