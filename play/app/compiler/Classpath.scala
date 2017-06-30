@@ -23,8 +23,8 @@ object Classpath {
     println("Loading files...")
     val jarFiles = for {
       name <- Seq(
-        "/compiler/scala-library-2.11.8.jar",
-        "/compiler/scalajs-library_2.11-0.6.14.jar",
+        "/compiler/scala-library-2.12.2.jar",
+        "/compiler/scalajs-library_2.12-0.6.18.jar",
         "/compiler/scala-warrior.jar"
       )
     } yield {
