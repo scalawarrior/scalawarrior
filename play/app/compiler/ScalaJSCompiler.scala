@@ -72,14 +72,7 @@ object ScalaJSCompiler {
    * in-memory files
    */
   trait InMemoryGlobal { g: scala.tools.nsc.Global =>
-//    def ctx: JavaContext
-//    def dirs: Vector[DirectoryClassPath]
     override lazy val plugins = List[Plugin](new org.scalajs.core.compiler.ScalaJSPlugin(this))
-//    override lazy val platform: ThisPlatform = new JavaPlatform{
-//      val global: g.type = g
-//      override def classPath = new JavaClassPath(dirs, ctx)
-//    }
-
   }
 
   /**
@@ -89,10 +82,11 @@ object ScalaJSCompiler {
    */
   def initGlobalBits(logger: String => Unit)= {
     val vd = new io.VirtualDirectory("(memory)", None)
-    //val jCtx = new JavaContext()
-    //val jDirs = Classpath.scalac.map(new DirectoryClassPath(_, jCtx)).toVector
     lazy val settings = new Settings
-
+    settings.classpath.value =
+      "play/conf/compiler/scala-library-2.12.2.jar:" +
+      "play/conf/compiler/scalajs-library_2.12-0.6.18.jar:" +
+      "play/conf/compiler/scala-warrior.jar"
     settings.outputDirs.setSingleOutput(vd)
     val writer = new Writer{
       var inner = ByteString()
@@ -114,8 +108,6 @@ object ScalaJSCompiler {
     // global can be reused, just create new runs for new compiler invocations
     val (settings, reporter, vd) = initGlobalBits(_ => ())
     val compiler = new nsc.interactive.Global(settings, reporter) with InMemoryGlobal { g =>
-//      def ctx = jCtx
-//      def dirs = jDirs
       override lazy val analyzer = new {
         val global: g.type = g
       } with InteractiveAnalyzer {
@@ -160,14 +152,10 @@ object ScalaJSCompiler {
   }
 
   def compile(src: Array[Byte], logger: String => Unit = _ => ()): Option[Seq[VirtualScalaJSIRFile]] = {
-
     val singleFile = makeFile(src)
-    println(singleFile)
 
     val (settings, reporter, vd) = initGlobalBits(logger)
     val compiler = new nsc.Global(settings, reporter) with InMemoryGlobal{ g =>
-//      def ctx = jCtx
-//      def dirs = jDirs
       override lazy val analyzer = new {
         val global: g.type = g
       } with Analyzer{
