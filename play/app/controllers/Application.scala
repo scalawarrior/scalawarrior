@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 import compiler.ScalaJSCompiler
 import internal.{Stages, Step}
-import org.webjars.play.WebJarAssets
+import org.webjars.play.WebJarsUtil
 import play.api.i18n.I18nSupport
 import play.api.i18n.MessagesApi
 
@@ -19,8 +19,8 @@ import scala.concurrent.duration.Duration
 
 class Application @Inject()(
   override val messagesApi: MessagesApi,
-  components: ControllerComponents
-)(implicit environment: Environment, webJarAssets: WebJarAssets)
+  components: ControllerComponents,
+)(implicit environment: Environment, webJarsUtil: WebJarsUtil)
   extends AbstractController(components) with I18nSupport {
 
   case class RunForm(stage: Int, source: String)

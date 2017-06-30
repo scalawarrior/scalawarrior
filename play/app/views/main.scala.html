@@ -1,17 +1,17 @@
-@(title: String)(content: Html)(implicit webJarAssets: org.webjars.play.WebJarAssets)
+@(title: String)(content: Html)(implicit webJarsUtil: org.webjars.play.WebJarsUtil)
 <!DOCTYPE html>
 <html>
   <head>
     <title>@title</title>
-    <script type='text/javascript' src='@webJarAssets.at("jquery.min.js")'></script>
-    <script type='text/javascript' src='@webJarAssets.at("src-min/ace.js")'></script>
-    <script type='text/javascript' src='@webJarAssets.at("src-min/ext-language_tools.js")'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("jquery.min.js")'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("src-min/ace.js")'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("src-min/ext-language_tools.js")'></script>
     <script type='text/javascript' src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
     <script type='text/javascript' src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
     <script type='text/javascript' src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
-    <script type='text/javascript' src='@webJarAssets.at("bootstrap.min.js")'></script>
-    <link rel="stylesheet" media="screen" href="@webJarAssets.at("bootstrap.min.css")">
-    <link rel="stylesheet" media="screen" href="@webJarAssets.at("build/font/octicons.min.css")">
+    <script type='text/javascript' src='@webJarsUtil.url("bootstrap.min.js")'></script>
+    <link rel="stylesheet" media="screen" href="@webJarsUtil.url("bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@webJarsUtil.url("build/font/octicons.min.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/samurai.png")">
     <style>
       @*
