@@ -27,7 +27,7 @@ class ScalaWarriorController extends api.ScalaWarriorController {
     // TODO Write your code here!
   }
 }</div>
-  @playscalajs.html.scripts("scalajsclient")
+  @scalajs.html.scripts("scalajsclient", routes.Assets.at(_).toString, name => getClass.getResource(s"/public/$name") != null)
 }
 </div>
 
