@@ -23,6 +23,11 @@ object Styles extends StyleSheet.Inline {
     paddingBottom(14 px)
   )
 
+  val github = style(
+    fontSize(25 pt),
+    marginLeft(430 px)
+  )
+
   val status = style(
     fontSize(40 %%)
   )
