@@ -1,0 +1,1 @@
+web: play/target/universal/stage/bin/playserver -Dhttp.port=${PORT} -Dplay.crypto.secret=${APPLICATION_SECRET}
