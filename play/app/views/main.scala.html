@@ -1,21 +1,18 @@
-@(title: String)(content: Html)(implicit webJarAssets: WebJarAssets)
-@import play.api.Play
-@import scalacss.Defaults._
-
+@(title: String)(content: Html)(implicit webJarsUtil: org.webjars.play.WebJarsUtil)
+@import scalacss.DevDefaults._
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>@title</title>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))'></script>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("src-min/ace.js"))'></script>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("src-min/ext-language_tools.js"))'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("jquery.min.js")'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("src-min/ace.js")'></script>
+    <script type='text/javascript' src='@webJarsUtil.url("src-min/ext-language_tools.js")'></script>
     <script type='text/javascript' src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
     <script type='text/javascript' src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
     <script type='text/javascript' src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.js"))'></script>
-    <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.css"))">
-    <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(webJarAssets.locate("build/font/octicons.min.css"))">
+    <script type='text/javascript' src='@webJarsUtil.url("bootstrap.min.js")'></script>
+    <link rel="stylesheet" media="screen" href="@webJarsUtil.url("bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@webJarsUtil.url("build/font/octicons.min.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/samurai.png")">
     <style>
       @views.Styles.render

@@ -1,5 +1,4 @@
-@(level: Int)(implicit environment: play.api.Environment, webJarAssets: WebJarAssets)
-
+@(level: Int)(implicit environment: play.api.Environment, webJarsUtil: org.webjars.play.WebJarsUtil)
 @main("Scala Warrior") {
   <div>
     <div class="card @views.Styles.help.htmlClass">
@@ -28,7 +27,7 @@ class ScalaWarriorController extends api.ScalaWarriorController {
     // TODO Write your code here!
   }
 }</div>
-  @playscalajs.html.scripts("scalajsclient")
+  @scalajs.html.scripts("scalajsclient", routes.Assets.at(_).toString, name => getClass.getResource(s"/public/$name") != null)
 }
 </div>
 
